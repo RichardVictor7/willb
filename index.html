@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #800000; /* Vinho vermelho escuro */
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo da caixinha de música (estilo Spotify) */
+        .music-box {
+            background-color: #1DB954; /* Cor verde do Spotify */
+            border-radius: 50px;
+            padding: 15px 20px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-box img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        .music-info {
+            margin-left: 15px;
+            flex-grow: 1;
+            color: white;
+            text-align: left;
+        }
+
+        .music-info h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .music-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .audio-player {
+            width: 200px;
+        }
+
+        /* Estilo do carrossel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Ajuste o tamanho do carrossel */
+            margin: 0 auto;
+            overflow: hidden; /* Garante que as imagens que não estão visíveis sejam escondidas */
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Efeito de transição */
+        }
+
+        .carousel img {
+            width: 100%;
+            max-width: 100%; /* Faz com que cada imagem ocupe todo o espaço do carrossel */
+            border-radius: 10px;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: black;
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px;
+        }
+
+        .counter h2 {
+            margin-top: 20px;
+        }
+
+        .love-message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Caixinha de Música -->
+    <div class="music-box">
+        <img src="terca.jpeg" alt="Capa do Álbum"> <!-- Substitua pelo caminho da sua imagem -->
+        <div class="music-info">
+            <h3>Terça de tarde</h3>
+            <p>Pedrosa</p>
+        </div>
+        <audio class="audio-player" controls>
+            <source src="Pedrosa - Terça de Tarde.mp3" type="audio/mp3"> <!-- Substitua pelo caminho da sua música -->
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+    </div>
+
+    <!-- Carrossel -->
+    <div class="container">
+        <div class="carousel">
+            <button id="prev">&#10094;</button>
+            <div class="carousel-images">
+                <img src="img1.jpg" alt="">
+                <img src="img2.jpg" alt="">
+                <img src="img3.jpg" alt="">
+                <img src="img4.jpg" alt="">
+                <img src="img5.jpg" alt="">
+            </div>
+            <button id="next">&#10095;</button>
+        </div>
+
+        <div class="counter">
+            <h2>Eu te amo há:</h2>
+            <p id="timer"></p>
+        </div>
+
+        <div class="love-message">
+        <p>Minha linda, eu sei que nunca fui tanto de presentear você, mas dessa vez eu quero garantir que seja algo que você goste. Mas o principal, avisar que te amo e independente de tudo sempre vou amar, e garanto que nada além de Deus vai separar nós do nosso destino, ou seja, nunca vou desistir de você independente da circunstância e aflição que nós esteja passando, sempre vou está aqui para ajudar você no que precisar, sei que sou muito chato, e quando fico com raiva é porque eu amo muito você e essa é a forma de demonstrar que tenho medo de perder você, pois você é a única que entrou na minha vida realmente para me trazer alegria e cor ao mundo. Que seja nos hoje, amanhã, semana que vem, mês que vem, ano que vem, década que vem e para sempre, espero de todo meu chegar nos meus 95 anos e poder olhar uma última vez para você e poder dizer antes do meu último suspiro, "obrigado por tudo" enquanto penso, "eu não sou merecedor, mas o senhor caprichou tanto nesse presente pra min meu pai" . Enfim, nada que um desabafo de um adolescente apaixonado por uma loira do tamanho de um cone, mas oque importa, é vivermos hoje, pois o ontem foi história, e amanhã é um mistério, mas o hoje é um presente e não o presente, mas concerteza vou me orgulhar de dizer que o ontem eu vivi com você, o amanhã vou viver mais uma vez com você, e o agora eu tenho você. Como já dizia van Gogh "o amor nunca acaba e nem esfria, e se acabou, não era amor, era apenas uma atração carnal" te amo minha fofinha, nunca se esqueça disso!!</p>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidade do carrossel
+        let index = 0;
+        const images = document.querySelector('.carousel-images');
+        const imageElements = document.querySelectorAll('.carousel img'); // Agora calculamos as imagens
+
+        const totalImages = imageElements.length; // Total de imagens agora é calculado corretamente
+
+        function updateCarousel() {
+            // Calculando o deslocamento com base no índice e aplicando o efeito de transição
+            images.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        // Navegação do carrossel
+        document.getElementById('next').addEventListener('click', () => {
+            index = (index + 1) % totalImages; // Avança para a próxima imagem
+            updateCarousel();
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            index = (index - 1 + totalImages) % totalImages; // Retrocede para a imagem anterior
+            updateCarousel();
+        });
+
+        // Contador de tempo do relacionamento
+        const startDate = new Date("2024-08-02T00:00:00"); // Ajuste para a data do relacionamento
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)) % 12;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            const minutes = Math.floor(diff / (1000 * 60)) % 60;
+            const seconds = Math.floor(diff / 1000) % 60;
+            
+            document.getElementById('timer').textContent = 
+                `${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
